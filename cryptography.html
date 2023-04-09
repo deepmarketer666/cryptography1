@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cryptography Lab</title>
+    <script>
+      function encrypt() {
+        // Get the plaintext and the shift key
+        var plaintext = document.getElementById("plaintext").value;
+        var shiftKey = parseInt(document.getElementById("shift-key").value);
+
+        // Convert the plaintext to uppercase and remove spaces
+        plaintext = plaintext.toUpperCase().replace(/ /g, "");
+
+        // Encrypt the plaintext using the Caesar cipher
+        var ciphertext = "";
+        for (var i = 0; i < plaintext.length; i++) {
+          var charCode = plaintext.charCodeAt(i);
+          var encryptedCharCode = ((charCode - 65 + shiftKey) % 26) + 65;
+          var encryptedChar = String.fromCharCode(encryptedCharCode);
+          ciphertext += encryptedChar;
+        }
+
+        // Display the encrypted message
+        document.getElementById("ciphertext").innerHTML = ciphertext;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Cryptography Lab</h1>
+    <form>
+      <label for="plaintext">Plaintext:</label>
+      <input type="text" id="plaintext"><br>
+      <label for="shift-key">Shift key:</label>
+      <input type="number" id="shift-key"><br>
+      <input type="button" value="Encrypt" onclick="encrypt()">
+    </form>
+    <h2>Encrypted message:</h2>
+    <div id="ciphertext"></div>
+  </body>
+</html>
